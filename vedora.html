@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vedora Marketing Agency — Growth, Engineered</title>
+<meta name="description" content="Vedora Marketing Agency — SEO, AI SEO, Web Design & Development,  Social Media, and AI Solutions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --mist:#f2fafc;
+    --ink:#0a1f2b;
+    --slate:#5c7583;
+    --cyan-deep:#0891b2;
+    --cyan:#06b6d4;
+    --cyan-bright:#22d3ee;
+    --line:#d9edf2;
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif; font-weight:600; letter-spacing:-0.02em; line-height:1.08;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--cyan-deep);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-weight:500;
+  }
+  .eyebrow::before{
+    content:'';
+    width:16px;height:1px;background:var(--cyan-deep);
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;display:block;}
+  section{position:relative;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  /* -------------------- NAV -------------------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,255,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px;
+  }
+  .logo{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:21px;
+    display:flex; align-items:center; gap:10px;
+    letter-spacing:-0.01em;
+  }
+  .logo .mark{
+    width:30px;height:30px;border-radius:8px;
+    background:linear-gradient(135deg,var(--cyan-bright),var(--cyan-deep));
+    display:flex;align-items:center;justify-content:center;
+    color:white; font-size:15px; font-weight:700;
+    flex-shrink:0;
+  }
+  .navlinks{display:flex; gap:36px; align-items:center;}
+  .navlinks a{font-size:14.5px; font-weight:500; color:var(--slate); transition:color .2s; position:relative;}
+  .navlinks a::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--cyan-deep);transition:width .2s;}
+  .navlinks a:hover{color:var(--ink);}
+  .navlinks a:hover::after{width:100%;}
+  header{border-top:3px solid var(--cyan-deep);}
+
+  .nav-dropdown{position:relative;}
+  .dropdown-trigger{display:flex; align-items:center; gap:5px;}
+  .dropdown-trigger svg{transition:transform .2s;}
+  .nav-dropdown.open .dropdown-trigger svg{transform:rotate(180deg);}
+  .nav-dropdown.open .dropdown-trigger{color:var(--ink);}
+
+  .dropdown-menu{
+    position:absolute; top:calc(100% + 18px); left:50%; transform:translateX(-50%) translateY(-8px);
+    background:white; border:1px solid var(--line); border-radius:14px;
+    box-shadow:0 20px 40px -12px rgba(10,31,43,0.18);
+    padding:10px; width:240px;
+    display:flex; flex-direction:column; gap:2px;
+    opacity:0; visibility:hidden; transition:opacity .18s ease, transform .18s ease, visibility .18s;
+    z-index:50;
+  }
+  .dropdown-menu::before{
+    content:''; position:absolute; top:-6px; left:50%; transform:translateX(-50%) rotate(45deg);
+    width:12px; height:12px; background:white; border-left:1px solid var(--line); border-top:1px solid var(--line);
+  }
+  .nav-dropdown.open .dropdown-menu{
+    opacity:1; visibility:visible; transform:translateX(-50%) translateY(0);
+  }
+  .dd-item{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:11px 14px; border-radius:8px; font-size:14px; font-weight:500; color:var(--ink);
+    transition:background .15s, color .15s, padding-left .15s;
+  }
+  .dd-item::after{
+    content:'→'; opacity:0; color:var(--cyan-deep); transition:opacity .15s, transform .15s; transform:translateX(-4px);
+  }
+  .dd-item:hover{background:var(--mist); color:var(--cyan-deep); padding-left:18px;}
+  .dd-item:hover::after{opacity:1; transform:translateX(0);}
+  .nav-cta{
+    background:var(--ink); color:white; padding:11px 22px; border-radius:100px;
+    font-size:14px; font-weight:600;
+    transition:background .2s, transform .2s;
+  }
+  .nav-cta:hover{background:var(--cyan-deep); transform:translateY(-1px);}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:8px;}
+  .burger span{width:22px; height:2px; background:var(--ink); display:block;}
+  @media (max-width:900px){
+    .navlinks{display:none;}
+    .burger{display:flex;}
+  }
+
+  /* -------------------- HERO -------------------- */
+  .hero{
+    padding:120px 0 100px;
+    position:relative;
+    background:
+      radial-gradient(ellipse 60% 50% at 85% 0%, rgba(34,211,238,0.14), transparent 60%),
+      var(--white);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(38px, 5.4vw, 68px);
+    margin:20px 0 22px;
+  }
+  .hero h1 .accent{
+    color:var(--cyan-deep);
+    position:relative;
+  }
+  .hero p.lead{
+    font-size:18px; color:var(--slate); max-width:520px; line-height:1.6; margin-bottom:34px;
+  }
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--cyan-deep); color:white; padding:15px 28px; border-radius:100px;
+    font-weight:600; font-size:15px; border:none; cursor:pointer;
+    transition:background .2s, transform .2s, box-shadow .2s;
+    box-shadow:0 8px 20px -6px rgba(8,145,178,0.5);
+  }
+  .btn-primary:hover{background:#067491; transform:translateY(-2px);}
+  .btn-secondary{
+    background:transparent; color:var(--ink); padding:15px 26px; border-radius:100px;
+    font-weight:600; font-size:15px; border:1.5px solid var(--line);
+    transition:border-color .2s, background .2s;
+  }
+  .btn-secondary:hover{border-color:var(--cyan-deep); background:var(--mist);}
+
+  .hero-stats{display:flex; gap:34px; margin-top:48px; flex-wrap:wrap;}
+  .hero-stats div strong{display:block; font-family:'Space Grotesk',sans-serif; font-size:26px; color:var(--cyan-deep);}
+  .hero-stats div{border-left:2px solid var(--line); padding-left:16px;}
+  .hero-stats div:first-child{border-left:none; padding-left:0;}
+  .hero-stats div span{font-size:13px; color:var(--slate);}
+
+  /* signature: signal wave visual */
+  .signal{
+    position:relative; height:420px; border-radius:24px;
+    background:linear-gradient(155deg,#062a34,#0a1f2b 60%);
+    overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .signal svg{width:100%; height:100%; position:absolute; top:0; left:0;}
+  .signal-label{
+    position:absolute; bottom:22px; left:22px; right:22px;
+    color:white; font-family:'JetBrains Mono',monospace; font-size:12px;
+    display:flex; justify-content:space-between; color:rgba(255,255,255,0.65);
+  }
+  .signal-label b{color:var(--cyan-bright); font-weight:500;}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .signal{height:280px; order:-1;}
+  }
+
+  /* -------------------- LOGOS / TRUST -------------------- */
+  .trust{padding:34px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .trust .wrap{display:flex; align-items:center; gap:40px; flex-wrap:wrap; justify-content:space-between;}
+  .trust p{font-size:12.5px; color:var(--slate); font-family:'JetBrains Mono',monospace; letter-spacing:0.06em; white-space:nowrap;}
+  .trust-items{display:flex; gap:36px; flex-wrap:wrap; align-items:center;}
+  .trust-items span{font-family:'Space Grotesk',sans-serif; font-weight:600; color:#b8ccd3; font-size:16px;}
+
+  /* -------------------- SERVICES -------------------- */
+  .services{padding:120px 0;}
+  .section-head{max-width:640px; margin-bottom:64px;}
+  .section-head h2{font-size:clamp(30px,4vw,44px); margin-top:16px;}
+  .section-head p{color:var(--slate); font-size:16.5px; margin-top:16px; line-height:1.6;}
+
+  .service-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:20px; overflow:hidden;
+  }
+  .service-card{
+    background:white; padding:38px 32px; transition:background .25s, box-shadow .25s;
+    display:flex; flex-direction:column; gap:16px; min-height:230px;
+    cursor:pointer; border-bottom:3px solid transparent;
+    position:relative;
+  }
+  .service-card:hover{background:var(--mist); border-bottom:3px solid var(--cyan-deep);}
+
+  /* ---- mini looping "video" badges ---- */
+  .mini-video{
+    position:absolute; top:22px; right:22px; width:58px; height:58px;
+    border-radius:12px; background:#0a1f2b; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 18px -6px rgba(10,31,43,0.35);
+  }
+  .mini-video .rec{
+    position:absolute; top:5px; left:6px; width:5px; height:5px; border-radius:50%;
+    background:#ff5c5c; animation:recBlink 1.4s ease-in-out infinite; z-index:2;
+  }
+  @keyframes recBlink{ 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+
+  /* SEO: magnifier sweeping over rising bars */
+  .mv-seo .bars{position:absolute; bottom:8px; left:10px; display:flex; align-items:flex-end; gap:4px;}
+  .mv-seo .bars i{display:block; width:5px; background:var(--cyan-bright); border-radius:2px; animation:barPulse 1.8s ease-in-out infinite;}
+  .mv-seo .bars i:nth-child(1){height:10px; animation-delay:0s;}
+  .mv-seo .bars i:nth-child(2){height:18px; animation-delay:.2s;}
+  .mv-seo .bars i:nth-child(3){height:26px; animation-delay:.4s;}
+  .mv-seo .bars i:nth-child(4){height:14px; animation-delay:.6s;}
+  @keyframes barPulse{ 0%,100%{transform:scaleY(0.7);} 50%{transform:scaleY(1);} }
+  .mv-seo .glass{position:absolute; width:16px; height:16px; border:2px solid #fff; border-radius:50%; animation:glassSweep 3s ease-in-out infinite;}
+  .mv-seo .glass::after{content:'';position:absolute; width:6px; height:2px; background:#fff; right:-5px; bottom:-1px; transform:rotate(45deg);}
+  @keyframes glassSweep{ 0%,100%{ top:6px; left:6px;} 50%{ top:20px; left:30px;} }
+
+  /* AI SEO: pulsing sparkle / signal ring */
+  .mv-aiseo .ring{position:absolute; width:34px; height:34px; border-radius:50%; border:2px solid var(--cyan-bright); animation:ringExpand 2s ease-out infinite;}
+  .mv-aiseo .ring2{animation-delay:1s;}
+  @keyframes ringExpand{ 0%{transform:scale(0.3); opacity:1;} 100%{transform:scale(1.3); opacity:0;} }
+  .mv-aiseo .core{position:absolute; width:8px; height:8px; border-radius:50%; background:#fff; animation:coreGlow 1.4s ease-in-out infinite;}
+  @keyframes coreGlow{ 0%,100%{box-shadow:0 0 4px 2px rgba(255,255,255,0.5);} 50%{box-shadow:0 0 10px 5px rgba(34,211,238,0.8);} }
+
+  /* Web Designing: swatches cycling colors */
+  .mv-design{display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:3px; padding:9px;}
+  .mv-design i{display:block; border-radius:3px; animation:swatchFade 2.4s ease-in-out infinite;}
+  .mv-design i:nth-child(1){background:var(--cyan-bright); animation-delay:0s;}
+  .mv-design i:nth-child(2){background:#fff; animation-delay:.3s;}
+  .mv-design i:nth-child(3){background:var(--cyan-deep); animation-delay:.6s;}
+  .mv-design i:nth-child(4){background:#4a6572; animation-delay:.9s;}
+  @keyframes swatchFade{ 0%,100%{opacity:0.35;} 50%{opacity:1;} }
+
+  /* Web Development: blinking cursor + typing code lines */
+  .mv-dev{align-items:flex-start !important; justify-content:flex-start !important; padding:10px; flex-direction:column; display:flex; gap:5px;}
+  .mv-dev .line{height:3px; border-radius:2px; background:var(--cyan-bright); animation:typeLine 2.4s steps(6) infinite;}
+  .mv-dev .line1{width:0; animation-delay:0s;}
+  .mv-dev .line2{width:0; background:#fff; animation-delay:.6s;}
+  .mv-dev .line3{width:0; animation-delay:1.2s;}
+  @keyframes typeLine{ 0%{width:0;} 40%{width:32px;} 90%{width:32px;} 100%{width:0;} }
+
+  
+  /* Social Media: heart like-pop */
+  .mv-social .heart{position:relative; animation:heartPop 1.6s ease-in-out infinite;}
+  @keyframes heartPop{ 0%,100%{transform:scale(1);} 40%{transform:scale(1.35);} 55%{transform:scale(1);} }
+  .mv-social .plusone{position:absolute; top:2px; font-size:9px; color:var(--cyan-bright); font-family:'JetBrains Mono',monospace; opacity:0; animation:floatUp 1.6s ease-in-out infinite;}
+  @keyframes floatUp{ 0%{opacity:0; transform:translateY(0);} 40%{opacity:1;} 100%{opacity:0; transform:translateY(-14px);} }
+
+  /* AI Solutions: neural nodes pulsing connections */
+  .mv-ai .node{position:absolute; width:6px; height:6px; border-radius:50%; background:var(--cyan-bright); animation:nodePulse 1.8s ease-in-out infinite;}
+  @keyframes nodePulse{ 0%,100%{opacity:0.35; transform:scale(0.9);} 50%{opacity:1; transform:scale(1.2);} }
+  .mv-ai line{stroke:rgba(34,211,238,0.5); stroke-width:1; animation:linePulse 1.8s ease-in-out infinite;}
+  @keyframes linePulse{ 0%,100%{opacity:0.2;} 50%{opacity:0.8;} }
+  .service-card .num{
+    font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--cyan-deep); font-weight:500;
+  }
+  .service-icon{
+    width:44px; height:44px; border-radius:10px;
+    background:var(--mist); display:flex; align-items:center; justify-content:center;
+    color:var(--cyan-deep);
+  }
+  .service-card:hover .service-icon{background:var(--cyan-deep); color:white;}
+  .service-card h3{font-size:19px; margin-top:2px;}
+  .service-card p{font-size:14.5px; color:var(--slate); line-height:1.55;}
+
+  @media (max-width:900px){ .service-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:600px){ .service-grid{grid-template-columns:1fr;} }
+
+  /* -------------------- PROCESS -------------------- */
+  .process{padding:110px 0; background:var(--mist);}
+  .process-list{display:flex; flex-direction:column; margin-top:50px;}
+  .process-row{
+    display:grid; grid-template-columns:90px 1fr 1fr; gap:24px; align-items:center;
+    padding:30px 0; border-top:1px solid var(--line);
+  }
+  .process-row:last-child{border-bottom:1px solid var(--line);}
+  .process-row .step{font-family:'JetBrains Mono',monospace; color:var(--cyan-deep); font-size:14px; position:relative; padding-left:14px;}
+  .process-row .step::before{content:'';position:absolute;left:0;top:4px;width:6px;height:6px;border-radius:50%;background:var(--cyan-bright);}
+  .process-row h4{font-size:19px;}
+  .process-row p{font-size:14.5px; color:var(--slate); line-height:1.6;}
+  @media (max-width:760px){
+    .process-row{grid-template-columns:1fr; gap:8px; padding:22px 0;}
+  }
+
+  /* -------------------- CONTACT / FORM -------------------- */
+  .contact{padding:120px 0;}
+  .contact-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px;}
+  .contact-info h2{font-size:clamp(28px,3.6vw,40px); margin-top:16px; margin-bottom:18px;}
+  .contact-info p{color:var(--slate); font-size:16px; line-height:1.65; margin-bottom:36px;}
+  .contact-detail{display:flex; gap:14px; align-items:flex-start; margin-bottom:22px;}
+  .contact-detail .ic{
+    width:38px;height:38px;border-radius:9px;background:var(--mist);
+    display:flex;align-items:center;justify-content:center;color:var(--cyan-deep); flex-shrink:0;
+  }
+  .contact-detail strong{display:block; font-size:14.5px;}
+  .contact-detail span{font-size:13.5px; color:var(--slate);}
+
+  .form-card{
+    background:var(--ink); border-radius:22px; padding:44px; color:white;
+    position:relative; overflow:hidden;
+  }
+  .form-card::before{
+    content:''; position:absolute; top:-80px; right:-80px; width:240px; height:240px;
+    background:radial-gradient(circle,rgba(34,211,238,0.35),transparent 70%);
+  }
+  .form-card h3{font-size:23px; margin-bottom:6px; position:relative;}
+  .form-card > p{color:rgba(255,255,255,0.55); font-size:14px; margin-bottom:30px; position:relative;}
+
+  .field{margin-bottom:20px; position:relative;}
+  .field label{display:block; font-size:12.5px; font-weight:600; margin-bottom:8px; color:rgba(255,255,255,0.75); letter-spacing:0.02em;}
+  .field input, .field textarea{
+    width:100%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14);
+    border-radius:10px; padding:13px 15px; color:white; font-family:'Inter',sans-serif; font-size:14.5px;
+    transition:border-color .2s, background .2s;
+  }
+  .field input::placeholder, .field textarea::placeholder{color:rgba(255,255,255,0.32);}
+  .field input:focus, .field textarea:focus{
+    outline:none; border-color:var(--cyan-bright); background:rgba(255,255,255,0.09);
+  }
+  .field textarea{resize:vertical; min-height:100px;}
+
+  .service-select{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .chip{
+    border:1px solid rgba(255,255,255,0.14); border-radius:10px; padding:11px 12px;
+    font-size:13px; cursor:pointer; text-align:center; transition:all .2s; user-select:none;
+    background:rgba(255,255,255,0.04);
+  }
+  .chip.active{background:var(--cyan-bright); color:var(--ink); border-color:var(--cyan-bright); font-weight:600;}
+  @media (max-width:480px){ .service-select{grid-template-columns:1fr;} }
+
+  .submit-btn{
+    width:100%; background:var(--cyan-bright); color:var(--ink); border:none; padding:15px;
+    border-radius:10px; font-weight:700; font-size:15px; cursor:pointer; margin-top:8px;
+    transition:background .2s, transform .2s;
+  }
+  .submit-btn:hover{background:white; transform:translateY(-1px);}
+  .submit-btn:disabled{opacity:0.6; cursor:not-allowed; transform:none;}
+  .form-note{font-size:12px; color:rgba(255,255,255,0.4); margin-top:14px; text-align:center;}
+  .success-msg{
+    display:none; background:rgba(34,211,238,0.12); border:1px solid rgba(34,211,238,0.4);
+    border-radius:10px; padding:16px; font-size:14px; margin-top:16px; align-items:center; gap:10px;
+  }
+  .success-msg.show{display:flex;}
+  .error-text{color:#ff9d9d; font-size:12px; margin-top:6px; display:none;}
+
+  @media (max-width:900px){ .contact-grid{grid-template-columns:1fr;} }
+
+  /* -------------------- FOOTER -------------------- */
+  footer{background:var(--ink); color:white; padding:64px 0 30px; border-top:3px solid var(--cyan-deep);}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:50px; border-bottom:1px solid rgba(255,255,255,0.1);}
+  footer h4{font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:var(--cyan-bright); font-weight:600; margin-bottom:18px;}
+  footer .flinks{display:flex; flex-direction:column; gap:12px;}
+  footer .flinks a{font-size:14.5px; color:rgba(255,255,255,0.8); transition:color .2s;}
+  footer .flinks a:hover{color:var(--cyan-bright);}
+  footer p.desc{color:rgba(255,255,255,0.55); font-size:14px; line-height:1.6; max-width:280px; margin-top:14px;}
+  .footer-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:26px; flex-wrap:wrap; gap:12px;}
+  .footer-bottom p{font-size:13px; color:rgba(255,255,255,0.4);}
+  @media (max-width:760px){ .footer-grid{grid-template-columns:1fr 1fr; row-gap:32px;} }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo"><img src="logo.png" alt="Vedora" style="height:32px; width:auto;">Vedora</div>
+    <div class="navlinks">
+      <div class="nav-dropdown" id="navDropdown">
+        <a href="#services" class="dropdown-trigger" id="dropdownTrigger">Services
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <a href="#contact" class="dd-item" data-service="SEO"><span>SEO</span></a>
+          <a href="#contact" class="dd-item" data-service="AI SEO"><span>AI SEO</span></a>
+          <a href="#contact" class="dd-item" data-service="Web Designing"><span>Web Designing</span></a>
+          <a href="#contact" class="dd-item" data-service="Web Development"><span>Web Development</span></a>
+          <a href="#contact" class="dd-item" data-service="Social Media"><span>Social Media</span></a>
+          <a href="#contact" class="dd-item" data-service="AI Solutions"><span>AI Solutions</span></a>
+        </div>
+      </div>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Start a project</a>
+    <button class="burger" aria-label="Menu" onclick="document.getElementById('mobilenav').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </nav>
+  <div id="mobilenav" style="display:none; flex-direction:column; padding:20px 20px 26px; gap:18px; border-top:1px solid var(--line);"></div>
+</header>
+
+
+<style>
+  #mobilenav a{font-size:15px; font-weight:500; color:var(--ink);}
+  #mobilenav .mn-label{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--cyan-deep); margin-top:6px;}
+  #mobilenav .mn-service{font-size:14.5px; font-weight:500; color:var(--slate); border-left:2px solid var(--line); padding-left:12px;}
+  #mobilenav .mn-service:hover{color:var(--cyan-deep); border-left-color:var(--cyan-deep);}
+  #mobilenav a.nav-cta{align-self:flex-start; margin-top:8px;}
+
+  #mobilenav .mn-toggle{
+    display:flex; align-items:center; justify-content:space-between;
+    font-size:15px; font-weight:500; color:var(--ink); background:none; border:none;
+    padding:0; cursor:pointer; width:100%; font-family:'Inter',sans-serif;
+  }
+  #mobilenav .mn-toggle svg{transition:transform .25s ease; flex-shrink:0;}
+  #mobilenav .mn-toggle.open svg{transform:rotate(180deg); color:var(--cyan-deep);}
+  #mobilenav .mn-toggle.open{color:var(--cyan-deep);}
+
+  #mnServiceList{
+    display:flex; flex-direction:column; gap:14px;
+    max-height:0; overflow:hidden; opacity:0;
+    transition:max-height .35s ease, opacity .3s ease, margin .35s ease;
+    margin-top:0;
+  }
+  #mnServiceList.open{
+    max-height:400px; opacity:1; margin-top:16px;
+  }
+</style>
+<script>
+  const SERVICES = ["SEO","AI SEO","Web Designing","Web Development","Social Media","AI Solutions"];
+
+  document.querySelector('.burger').addEventListener('click', () => {
+    const m = document.getElementById('mobilenav');
+    if(m.style.display === 'none' || !m.style.display){
+      const serviceLinks = SERVICES.map(s => `<a href="#contact" class="mn-service" data-service="${s}">${s}</a>`).join('');
+      m.innerHTML = `<button class="mn-toggle" id="mnToggle">All services
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                      </button>
+                      <div id="mnServiceList">${serviceLinks}</div>
+                      <span class="mn-label">More</span>
+                      <a href="#process">Process</a>
+                      <a href="#contact">Contact</a>
+                      <a href="#contact" class="nav-cta">Start a project</a>`;
+      m.style.display = 'flex';
+      attachServiceRedirects(m);
+
+      const mnToggle = document.getElementById('mnToggle');
+      const mnServiceList = document.getElementById('mnServiceList');
+      mnToggle.addEventListener('click', () => {
+        mnToggle.classList.toggle('open');
+        mnServiceList.classList.toggle('open');
+      });
+    } else { m.style.display = 'none'; }
+  });
+</script>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Vedora Marketing Agency</span>
+      <h1>Growth that<br>compounds, <span class="accent">not just clicks.</span></h1>
+      <p class="lead">We build the search presence, the sites, the paid engines, and the AI systems that turn your brand into the obvious choice — across SEO, web, performance media, social, and AI.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get a free audit</a>
+        <a href="#services" class="btn-secondary">See what we do</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>7</strong><span>services under one roof</span></div>
+        <div><strong>100%</strong><span>performance-tracked</span></div>
+        <div><strong>24–48h</strong><span>proposal turnaround</span></div>
+      </div>
+    </div>
+
+    <div class="signal">
+      <svg viewBox="0 0 400 420" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.1"/>
+            <stop offset="50%" stop-color="#22d3ee" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.1"/>
+          </linearGradient>
+        </defs>
+        <g id="wavesGroup" stroke="url(#waveGrad)" fill="none" stroke-width="1.4">
+          <path d="M0,120 C60,90 100,150 160,120 C220,90 260,150 320,120 C360,100 380,110 400,120" opacity="0.5"/>
+          <path d="M0,180 C60,150 100,210 160,180 C220,150 260,210 320,180 C360,160 380,170 400,180" opacity="0.7"/>
+          <path d="M0,240 C60,210 100,270 160,240 C220,210 260,270 320,240 C360,220 380,230 400,240" opacity="0.9"/>
+          <path d="M0,300 C60,270 100,330 160,300 C220,270 260,330 320,300 C360,280 380,290 400,300" opacity="0.5"/>
+        </g>
+        <circle cx="60" cy="120" r="3" fill="#22d3ee"/>
+        <circle cx="220" cy="240" r="3.5" fill="#ffffff"/>
+        <circle cx="340" cy="180" r="3" fill="#22d3ee"/>
+      </svg>
+      <div class="signal-label"><span>reach → signal → conversion</span><b>vedora.live</b></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #wavesGroup path{ animation: drift 9s ease-in-out infinite; transform-origin:center; }
+  #wavesGroup path:nth-child(2){ animation-delay:-2s; }
+  #wavesGroup path:nth-child(3){ animation-delay:-4s; }
+  #wavesGroup path:nth-child(4){ animation-delay:-6s; }
+  @keyframes drift{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-8px); }
+  }
+</style>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="wrap">
+    <p>WHERE WE OPERATE</p>
+    <div class="trust-items">
+      <span>Google</span><span>Meta</span><span>ChatGPT / AI Search</span><span>LinkedIn</span><span>Instagram</span><span>YouTube</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What we do</span>
+      <h2>Every growth lever, run by one team.</h2>
+      <p>No hand-offs between five different vendors. Vedora runs your search, your site, your ads, your socials, and your AI presence as one connected system.</p>
+    </div>
+
+    <div class="service-grid">
+
+      <div class="service-card" data-service="SEO">
+        <div class="mini-video mv-seo"><span class="rec"></span>
+          <div class="bars"><i></i><i></i><i></i><i></i></div>
+          <div class="glass"></div>
+        </div>
+        <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+        <div class="num">01</div>
+        <h3>SEO</h3>
+        <p>Technical fixes, content strategy, and link authority that move you up page one and keep you there.</p>
+      </div>
+
+      <div class="service-card" data-service="AI SEO">
+        <div class="mini-video mv-aiseo"><span class="rec"></span>
+          <div class="ring"></div>
+          <div class="ring ring2"></div>
+          <div class="core"></div>
+        </div>
+        <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z"/></svg></div>
+        <div class="num">02</div>
+        <h3>AI SEO</h3>
+        <p>Optimizing your brand to be found, cited, and recommended inside ChatGPT, Gemini, and AI answer engines.</p>
+      </div>
+
+      <div class="service-card" data-service="Web Designing">
+        <div class="mini-video mv-design"><span class="rec"></span>
+          <i></i><i></i><i></i><i></i>
+        </div>
+        <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg></div>
+        <div class="num">03</div>
+        <h3>Web Designing</h3>
+        <p>Interfaces built around how your customers actually decide, not templates borrowed from a theme store.</p>
+      </div>
+
+      <div class="service-card" data-service="Web Development">
+        <div class="mini-video mv-dev"><span class="rec"></span>
+          <div class="line line1"></div>
+          <div class="line line2"></div>
+          <div class="line line3"></div>
+        </div>
+        <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="num">04</div>
+        <h3>Web Development</h3>
+        <p>Fast, secure, scalable builds — from marketing sites to full web apps — shipped and maintained properly.</p>
+      </div>
+
+    
+
+      <div class="service-card" data-service="Social Media">
+        <div class="mini-video mv-social"><span class="rec"></span>
+          <svg class="heart" width="22" height="22" viewBox="0 0 24 24" fill="#22d3ee"><path d="M12 21s-7.5-4.6-10-9.3C.3 8.1 2 4.5 5.6 4c2-.3 3.8.6 4.9 2.2C11.6 4.6 13.4 3.7 15.4 4c3.6.5 5.3 4.1 3.6 7.7C19.5 16.4 12 21 12 21z"/></svg>
+          <span class="plusone">+1</span>
+        </div>
+        <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="8" height="8" rx="2"/><rect x="14" y="2" width="8" height="8" rx="2"/><rect x="2" y="14" width="8" height="8" rx="2"/><rect x="14" y="14" width="8" height="8" rx="2"/></svg></div>
+        <div class="num">06</div>
+        <h3>Social Media</h3>
+        <p>Content calendars, creative, and community management that build a following your ads can then convert.</p>
+      </div>
+
+      <div class="service-card" data-service="AI Solutions">
+        <div class="mini-video mv-ai"><span class="rec"></span>
+          <svg width="40" height="40" viewBox="0 0 40 40">
+            <line x1="10" y1="12" x2="20" y2="20"/><line x1="30" y1="12" x2="20" y2="20"/><line x1="10" y1="30" x2="20" y2="20"/><line x1="30" y1="30" x2="20" y2="20"/>
+          </svg>
+          <div class="node" style="top:9px; left:7px;"></div>
+          <div class="node" style="top:9px; right:7px;"></div>
+          <div class="node" style="bottom:9px; left:7px;"></div>
+          <div class="node" style="bottom:9px; right:7px;"></div>
+          <div class="node" style="top:26px; left:26px; background:#fff; width:8px; height:8px;"></div>
+        </div>
+        <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><path d="M8 15c1.2 1 2.8 1 4 0"/></svg></div>
+        <div class="num">07</div>
+        <h3>AI Solutions</h3>
+        <p>Chatbots, automation, and internal AI tooling that cut response time and cost across your funnel.</p>
+      </div>
+
+      <div class="service-card" data-service="Not sure yet" style="background:var(--mist);">
+        <div class="service-icon" style="background:var(--cyan-deep); color:white;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <h3 style="margin-top:auto;">Not sure which fits?</h3>
+        <p>Tell us what you're trying to grow and we'll map the right mix in the form below.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="wrap">
+    <span class="eyebrow">How we work</span>
+    <h2 style="font-size:clamp(28px,3.6vw,40px); margin-top:16px;">From brief to live in four steps.</h2>
+
+    <div class="process-list">
+      <div class="process-row">
+        <div class="step">01</div>
+        <h4>Audit</h4>
+        <p>We review your current site, rankings, ad accounts, and socials, and tell you exactly what's leaking growth.</p>
+      </div>
+      <div class="process-row">
+        <div class="step">02</div>
+        <h4>Plan</h4>
+        <p>A scoped roadmap with the services, timeline, and numbers you'd need to hit your target — no filler.</p>
+      </div>
+      <div class="process-row">
+        <div class="step">03</div>
+        <h4>Build & run</h4>
+        <p>Our team executes — design, dev, campaigns, content — while you get weekly visibility, not surprise reports.</p>
+      </div>
+      <div class="process-row">
+        <div class="step">04</div>
+        <h4>Scale</h4>
+        <p>Once a channel proves out, we double down there and layer in the next one, so growth keeps compounding.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / FORM -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Tell us what you're building. We'll tell you how to grow it.</h2>
+      <p>Fill in the form and pick the service you're after — a strategist will get back to you within one business day with next steps.</p>
+
+      <div class="contact-detail">
+        <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <div><strong>Call us</strong><span>+91 98XXX XXXXX</span></div>
+      </div>
+      <div class="contact-detail">
+        <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg></div>
+        <div><strong>Email</strong><span>Vedoradigital01@gmail.com</span></div>
+      </div>
+      <div class="contact-detail">
+        <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><strong>Based in</strong><span>Delhi, India — working with clients everywhere</span></div>
+      </div>
+      <div class="contact-detail">
+        <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
+        <div><strong>Instagram</strong><span><a href="https://www.instagram.com/vedora.digital?igsh=ODhoOHB4c2w1d3Ri" target="_blank" rel="noopener" style="color:var(--cyan-deep);">@vedora.digital</a></span></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>Start your project</h3>
+      <p>Takes about a minute. No spam, ever.</p>
+
+      <form id="leadForm" novalidate>
+        <div class="field">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="e.g. Rohan Mehta">
+          <div class="error-text" id="err-name">Please enter your name.</div>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" placeholder="e.g. 98765 43210">
+          <div class="error-text" id="err-phone">Please enter a valid phone number.</div>
+        </div>
+
+        <div class="field">
+          <label>Which service do you need?</label>
+          <div class="service-select" id="serviceSelect">
+            <div class="chip" data-value="SEO">SEO</div>
+            <div class="chip" data-value="AI SEO">AI SEO</div>
+            <div class="chip" data-value="Web Designing">Web Designing</div>
+            <div class="chip" data-value="Web Development">Web Development</div>
+            <div class="chip" data-value="Social Media">Social Media</div>
+            <div class="chip" data-value="AI Solutions">AI Solutions</div>
+            <div class="chip" data-value="Not sure yet">Not sure yet</div>
+          </div>
+          <div class="error-text" id="err-service">Please select a service.</div>
+        </div>
+
+        <div class="field">
+          <label for="message">What do you actually want?</label>
+          <textarea id="message" name="message" placeholder="Tell us about your business, goals, and timeline..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Send request</button>
+        <p class="form-note">We reply within 24–48 hours.</p>
+
+        <div class="success-msg" id="successMsg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+          <span>Thanks! Your request has been recorded. We'll reach out shortly.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo"><span class="mark">V</span>Vedora</div>
+        <p class="desc">A marketing agency built around measurable growth — search, sites, media, and AI, run as one system.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <div class="flinks">
+          <a href="#services">SEO</a>
+          <a href="#services">AI SEO</a>
+          <a href="#services">Web Design</a>
+          <a href="#services">Web Development</a>
+        </div>
+      </div>
+      <div>
+        <h4>More</h4>
+        <div class="flinks">
+          <a href="#services">Social Media</a>
+          <a href="#services">AI Solutions</a>
+        </div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <div class="flinks">
+          <a href="#process">Our process</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Vedora Marketing Agency. All rights reserved.</p>
+      <p>Delhi, India</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // service chip selection
+  let selectedService = '';
+  const chips = document.querySelectorAll('.chip');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      selectChip(chip.dataset.value);
+    });
+  });
+
+  function selectChip(value){
+    chips.forEach(c => c.classList.remove('active'));
+    const match = Array.from(chips).find(c => c.dataset.value === value);
+    if(match) match.classList.add('active');
+    selectedService = value;
+    document.getElementById('err-service').style.display = 'none';
+  }
+
+  // desktop "Services" dropdown
+  const navDropdown = document.getElementById('navDropdown');
+  const dropdownTrigger = document.getElementById('dropdownTrigger');
+
+  dropdownTrigger.addEventListener('click', (e) => {
+    e.preventDefault();
+    navDropdown.classList.toggle('open');
+  });
+  document.addEventListener('click', (e) => {
+    if(!navDropdown.contains(e.target)) navDropdown.classList.remove('open');
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') navDropdown.classList.remove('open');
+  });
+
+  document.querySelectorAll('.dd-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      selectChip(item.dataset.service);
+      navDropdown.classList.remove('open');
+      document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+      setTimeout(() => document.getElementById('name').focus(), 500);
+    });
+  });
+
+  document.querySelectorAll('.service-card[data-service]').forEach(card => {
+    card.addEventListener('click', () => {
+      selectChip(card.dataset.service);
+      document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+      setTimeout(() => document.getElementById('name').focus(), 500);
+      if(document.getElementById('mobilenav')) document.getElementById('mobilenav').style.display = 'none';
+    });
+  });
+
+  // wire up mobile-nav service links the same way
+  function attachServiceRedirects(container){
+    container.querySelectorAll('.mn-service').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        selectChip(link.dataset.service);
+        container.style.display = 'none';
+        document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+        setTimeout(() => document.getElementById('name').focus(), 500);
+      });
+    });
+  }
+
+  // form submit handling — sends data to Google Sheet via Apps Script
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbz53RykJIzUbQan49OUT8U--BYChby62yI79f_1g84TkiqsKnNMJz0-rVJ6PvN0-9gqxg/exec';
+
+  const form = document.getElementById('leadForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    let valid = true;
+
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const phoneDigits = phone.replace(/\D/g,'');
+    const message = document.getElementById('message').value.trim();
+
+    const errName = document.getElementById('err-name');
+    const errPhone = document.getElementById('err-phone');
+    const errService = document.getElementById('err-service');
+
+    if(!name){ errName.style.display='block'; valid=false; } else { errName.style.display='none'; }
+    if(phoneDigits.length < 7){ errPhone.style.display='block'; valid=false; } else { errPhone.style.display='none'; }
+    if(!selectedService){ errService.style.display='block'; valid=false; } else { errService.style.display='none'; }
+
+    if(!valid) return;
+
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    const formData = new URLSearchParams();
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('service', selectedService);
+    formData.append('message', message);
+
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
+    }).catch(() => {
+      // no-cors means we can't read success/failure, so we don't block on errors here
+    }).finally(() => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send request';
+      document.getElementById('successMsg').classList.add('show');
+      form.reset();
+      chips.forEach(c => c.classList.remove('active'));
+      selectedService = '';
+    });
+  });
+</script>
+
+</body>
+</html>
