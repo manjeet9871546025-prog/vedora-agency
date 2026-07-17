@@ -75,15 +75,23 @@
   .topbar .social-icons{display:flex; gap:14px; align-items:center;}
   .topbar .social-icons a{color:rgba(255,255,255,0.65);}
   .topbar .social-icons a:hover{color:var(--cyan-bright);}
+  .email-short{display:none;}
+  @media (max-width:700px){
+    .email-full{display:none;}
+    .email-short{display:inline;}
+  }
   @media (max-width:900px){
     .topbar .tb-hours{display:none;}
   }
   @media (max-width:700px){
-    .topbar .tb-phone, .topbar .social-icons{display:none;}
+    .topbar{justify-content:space-between; padding:0 18px;}
+    .topbar .tb-phone{display:none;}
+    .topbar .tb-divider{display:none;}
+    .topbar .msg-btn{display:none;}
+    .topbar-left, .topbar-right{gap:12px;}
   }
   @media (max-width:480px){
-    .topbar{padding:0 16px;}
-    .topbar .tb-divider{display:none;}
+    .topbar{padding:0 14px;}
   }
 
   /* -------------------- FLOATING PILL NAV -------------------- */
@@ -164,24 +172,58 @@
     white-space:nowrap;
   }
   .nav-cta:hover{background:var(--cyan-deep); transform:translateY(-1px);}
-  .cta-short{display:none;}
+
+  .burger{
+    display:none; flex-direction:column; gap:5px; cursor:pointer;
+    background:none; border:none; padding:10px; margin-left:4px;
+  }
+  .burger span{width:20px; height:2px; background:var(--ink); display:block; border-radius:2px;}
 
   @media (max-width:900px){
-    header nav.wrap{padding:8px 8px 8px 18px; gap:6px;}
-    .navlinks{gap:14px;}
-    .navlinks a{font-size:13px; white-space:nowrap;}
-    .nav-cta{padding:9px 14px; font-size:12.5px;}
-    .logo{font-size:17px;}
-    .dropdown-trigger svg{width:10px; height:10px;}
+    header nav.wrap{padding:8px 8px 8px 20px; gap:10px;}
+    .navlinks{display:none;}
+    .burger{display:flex;}
+    .nav-cta{padding:10px 18px; font-size:13px;}
+    .logo{font-size:18px;}
   }
   @media (max-width:480px){
-    header nav.wrap{padding:7px 6px 7px 14px; gap:4px;}
-    .navlinks{gap:9px;}
-    .navlinks a{font-size:11.5px;}
-    .nav-cta{padding:8px 11px; font-size:11.5px;}
-    .logo{font-size:15px;}
-    .cta-full{display:none;}
-    .cta-short{display:inline;}
+    header nav.wrap{padding:7px 6px 7px 16px;}
+    .nav-cta{padding:9px 14px; font-size:12.5px;}
+    .logo{font-size:16px;}
+  }
+
+  #mobilenav{
+    pointer-events:all;
+    width:100%; max-width:420px;
+    background:rgba(255,255,255,0.98); backdrop-filter:blur(14px);
+    border:1px solid var(--line); border-radius:22px;
+    box-shadow:0 24px 46px -14px rgba(10,31,43,0.2);
+    margin-top:10px; padding:20px 22px 24px;
+    display:none; flex-direction:column; gap:16px;
+  }
+  #mobilenav.open{display:flex;}
+  #mobilenav a{font-size:15px; font-weight:500; color:var(--ink);}
+  #mobilenav .mn-label{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--cyan-deep); margin-top:4px;}
+  #mobilenav .mn-service{font-size:14.5px; font-weight:500; color:var(--slate); border-left:2px solid var(--line); padding-left:12px;}
+  #mobilenav .mn-service:hover{color:var(--cyan-deep); border-left-color:var(--cyan-deep);}
+
+  .mn-toggle{
+    display:flex; align-items:center; justify-content:space-between;
+    font-size:15px; font-weight:600; color:var(--ink); background:none; border:none;
+    padding:0; cursor:pointer; width:100%; font-family:'Inter',sans-serif;
+  }
+  .mn-toggle svg{transition:transform .25s ease; flex-shrink:0; color:var(--slate);}
+  .mn-toggle.open svg{transform:rotate(180deg); color:var(--cyan-deep);}
+  .mn-toggle.open{color:var(--cyan-deep);}
+
+  #mobilenav .mn-services-list{
+    display:flex; flex-direction:column; gap:12px;
+    max-height:0; overflow:hidden; opacity:0;
+    transition:max-height .35s ease, opacity .3s ease, margin .35s ease;
+    margin-top:0;
+  }
+  #mobilenav .mn-services-list.open{
+    max-height:400px; opacity:1; margin-top:14px;
   }
 
   /* -------------------- HERO -------------------- */
@@ -422,6 +464,41 @@
     .partners-grid{grid-template-columns:1fr; gap:24px;}
   }
 
+  .brand-trust{padding:0 0 50px;}
+  .brand-trust .section-card{padding:44px 56px;}
+  .brand-trust-title{
+    font-size:13px; font-family:'JetBrains Mono',monospace; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--slate); text-align:center; margin-bottom:30px; font-weight:500;
+  }
+  @media (max-width:600px){
+    .brand-trust .section-card{padding:32px 24px;}
+  }
+
+  .marquee{
+    position:relative; overflow:hidden; margin-top:44px;
+    -webkit-mask-image:linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+    mask-image:linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  }
+  .marquee-track{
+    display:flex; align-items:center; gap:48px; width:max-content;
+    animation:marqueeScroll 42s linear infinite;
+  }
+  .marquee:hover .marquee-track{ animation-play-state:paused; }
+  .marquee-item{
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px;
+    color:#b8ccd3; white-space:nowrap; flex-shrink:0;
+    transition:color .2s;
+  }
+  .marquee-item:hover{ color:var(--cyan-deep); }
+  @keyframes marqueeScroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  @media (max-width:600px){
+    .marquee-item{font-size:16px;}
+    .marquee-track{gap:32px;}
+  }
+
   /* -------------------- SERVICES -------------------- */
   .services{padding:120px 0;}
   .section-head{max-width:640px; margin-bottom:64px;}
@@ -654,7 +731,7 @@
 
 <div class="topbar">
   <div class="topbar-left">
-    <a href="mailto:Vedoradigital01@gmail.com"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg>Vedoradigital01@gmail.com</a>
+    <a href="mailto:Vedoradigital01@gmail.com"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg><span class="email-full">Vedoradigital01@gmail.com</span><span class="email-short">Email Us</span></a>
     <span class="tb-divider">|</span>
     <a href="tel:+919800000000" class="tb-phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+91 98XXX XXXXX</a>
     <span class="tb-divider">|</span>
@@ -692,8 +769,25 @@
       <a href="#process">Process</a>
       <a href="#contact">Contact</a>
     </div>
-    <a href="#contact" class="nav-cta"><span class="cta-full">Start a project</span><span class="cta-short">Start</span></a>
+    <a href="#contact" class="nav-cta">Start a project</a>
+    <button class="burger" id="burgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
+  <div id="mobilenav">
+    <button class="mn-toggle" id="mnServicesToggle">Services
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mn-services-list" id="mnServicesList">
+      <a href="#contact" class="mn-service" data-service="SEO">SEO</a>
+      <a href="#contact" class="mn-service" data-service="AI SEO">AI SEO</a>
+      <a href="#contact" class="mn-service" data-service="Web Designing">Web Designing</a>
+      <a href="#contact" class="mn-service" data-service="Web Development">Web Development</a>
+      <a href="#contact" class="mn-service" data-service="Social Media">Social Media</a>
+      <a href="#contact" class="mn-service" data-service="AI Solutions">AI Solutions</a>
+    </div>
+    <span class="mn-label">More</span>
+    <a href="#process" id="mnProcess">Process</a>
+    <a href="#contact" id="mnContact">Contact</a>
+  </div>
 </header>
 
 <!-- NOW SHOWING SHOWCASE -->
@@ -874,6 +968,51 @@
           <h2>Certified on the stacks that actually <span class="accent">move the needle.</span></h2>
         </div>
         <p>We're accredited, partnered, or power users of the platforms your campaigns depend on — so there's no learning curve between strategy and launch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND MARQUEE -->
+<section class="brand-trust">
+  <div class="wrap">
+    <div class="section-card">
+      <h3 class="brand-trust-title">Trusted by category-leading brand partners</h3>
+      <div class="marquee">
+        <div class="marquee-track">
+          <span class="marquee-item">Bing Ads</span>
+          <span class="marquee-item">WooCommerce</span>
+          <span class="marquee-item">Google Marketing Platform</span>
+          <span class="marquee-item">Google Cloud</span>
+          <span class="marquee-item">Pinterest Partner</span>
+          <span class="marquee-item">Mailchimp</span>
+          <span class="marquee-item">Oobo Partner</span>
+          <span class="marquee-item">Meta Partner</span>
+          <span class="marquee-item">Salesforce</span>
+          <span class="marquee-item">Shopify</span>
+          <span class="marquee-item">Snapchat</span>
+          <span class="marquee-item">SocialMedia.ORG</span>
+          <span class="marquee-item">WordPress</span>
+          <span class="marquee-item">WP Engine</span>
+          <span class="marquee-item">Ahrefs</span>
+          <span class="marquee-item">Zoho Partner</span>
+          <span class="marquee-item">Bing Ads</span>
+          <span class="marquee-item">WooCommerce</span>
+          <span class="marquee-item">Google Marketing Platform</span>
+          <span class="marquee-item">Google Cloud</span>
+          <span class="marquee-item">Pinterest Partner</span>
+          <span class="marquee-item">Mailchimp</span>
+          <span class="marquee-item">Oobo Partner</span>
+          <span class="marquee-item">Meta Partner</span>
+          <span class="marquee-item">Salesforce</span>
+          <span class="marquee-item">Shopify</span>
+          <span class="marquee-item">Snapchat</span>
+          <span class="marquee-item">SocialMedia.ORG</span>
+          <span class="marquee-item">WordPress</span>
+          <span class="marquee-item">WP Engine</span>
+          <span class="marquee-item">Ahrefs</span>
+          <span class="marquee-item">Zoho Partner</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1162,6 +1301,36 @@
     document.getElementById('err-service').style.display = 'none';
   }
 
+  // mobile hamburger menu
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobilenav = document.getElementById('mobilenav');
+
+  burgerBtn.addEventListener('click', () => {
+    mobilenav.classList.toggle('open');
+  });
+
+  const mnServicesToggle = document.getElementById('mnServicesToggle');
+  const mnServicesList = document.getElementById('mnServicesList');
+  mnServicesToggle.addEventListener('click', () => {
+    mnServicesToggle.classList.toggle('open');
+    mnServicesList.classList.toggle('open');
+  });
+
+  document.querySelectorAll('#mobilenav .mn-service').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      selectChip(link.dataset.service);
+      mobilenav.classList.remove('open');
+      mnServicesToggle.classList.remove('open');
+      mnServicesList.classList.remove('open');
+      document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+      setTimeout(() => { const n = document.getElementById('name'); if(n) n.focus(); }, 500);
+    });
+  });
+
+  document.getElementById('mnProcess').addEventListener('click', () => mobilenav.classList.remove('open'));
+  document.getElementById('mnContact').addEventListener('click', () => mobilenav.classList.remove('open'));
+
   // desktop "Services" dropdown
   const navDropdown = document.getElementById('navDropdown');
   const dropdownTrigger = document.getElementById('dropdownTrigger');
@@ -1198,7 +1367,7 @@
   // form submit handling — sends data to Google Sheet via Apps Script,
   // using a hidden-iframe form POST (far more reliable across browsers
   // than fetch with mode:'no-cors' for Google Apps Script endpoints)
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzJfFUszg9jl-SEkHoC6OGo0XQa4j4UTveFE_2QvnaPd8aDtnoiTw7npJ-esF86-4QYZQ/exec';
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycby485fV9fD4McsJpw2QYFnibMrtcCaZd6OHfYTeNCSSsTyjh_DV1QrDdq2OjKgAS414pw/exec';
 
   const form = document.getElementById('leadForm');
   const hiddenIframe = document.getElementById('hiddenIframe');
