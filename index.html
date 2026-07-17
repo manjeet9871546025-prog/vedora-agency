@@ -11,7 +11,7 @@
   :root{
     --white:#ffffff;
     --mist:#f2fafc;
-    --ink:#0a1f2b;
+    --ink:#020509;
     --slate:#5c7583;
     --cyan-deep:#0891b2;
     --cyan:#06b6d4;
@@ -33,7 +33,20 @@
     *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
   }
 
-  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif; font-weight:600; letter-spacing:-0.02em; line-height:1.08;}
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk',sans-serif; font-weight:800; letter-spacing:-0.02em; line-height:1.08;
+    color:var(--ink);
+    background:linear-gradient(180deg, #1a1f26 0%, #000000 55%, #000000 100%);
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  @supports not ((-webkit-background-clip:text) or (background-clip:text)){
+    h1,h2,h3,h4{ color:var(--ink); -webkit-text-fill-color:var(--ink); }
+  }
+  h1 .accent, h2 .accent, h3 .accent, h4 .accent{
+    background:none; -webkit-background-clip:initial; background-clip:initial;
+    -webkit-text-fill-color:initial; color:var(--cyan-deep);
+  }
   .eyebrow{
     font-family:'JetBrains Mono',monospace;
     font-size:12px;
@@ -316,7 +329,11 @@
     font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase;
     background:rgba(255,255,255,0.16); display:inline-block; padding:7px 14px; border-radius:100px; margin-bottom:20px;
   }
-  .sc-title{font-size:clamp(24px,2.8vw,36px); margin-bottom:16px; color:white;}
+  .sc-title{
+    font-size:clamp(24px,2.8vw,36px); margin-bottom:16px; color:white;
+    background:none; -webkit-background-clip:initial; background-clip:initial;
+    -webkit-text-fill-color:white;
+  }
   .sc-desc{font-size:15.5px; line-height:1.65; color:rgba(255,255,255,0.88); margin-bottom:24px; max-width:440px;}
   .sc-features{list-style:none; margin-bottom:28px; display:flex; flex-direction:column; gap:9px;}
   .sc-features li{display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(255,255,255,0.92);}
@@ -469,6 +486,8 @@
   .brand-trust-title{
     font-size:13px; font-family:'JetBrains Mono',monospace; letter-spacing:0.08em; text-transform:uppercase;
     color:var(--slate); text-align:center; margin-bottom:30px; font-weight:500;
+    background:none; -webkit-background-clip:initial; background-clip:initial;
+    -webkit-text-fill-color:var(--slate);
   }
   @media (max-width:600px){
     .brand-trust .section-card{padding:32px 24px;}
@@ -641,7 +660,11 @@
     color:white;
   }
   .team-photo-content .eyebrow{color:var(--cyan-bright);}
-  .team-photo-content h3{font-size:clamp(22px,2.6vw,32px); color:white; margin:14px 0 10px; max-width:600px;}
+  .team-photo-content h3{
+    font-size:clamp(22px,2.6vw,32px); color:white; margin:14px 0 10px; max-width:600px;
+    background:none; -webkit-background-clip:initial; background-clip:initial;
+    -webkit-text-fill-color:white;
+  }
   .team-photo-content p{font-size:15px; color:rgba(255,255,255,0.82); max-width:520px; line-height:1.6;}
   @media (max-width:700px){
     .team-photo{height:340px;}
@@ -672,7 +695,11 @@
     content:''; position:absolute; top:-80px; right:-80px; width:240px; height:240px;
     background:radial-gradient(circle,rgba(34,211,238,0.35),transparent 70%);
   }
-  .form-card h3{font-size:23px; margin-bottom:6px; position:relative;}
+  .form-card h3{
+    font-size:23px; margin-bottom:6px; position:relative; color:white;
+    background:none; -webkit-background-clip:initial; background-clip:initial;
+    -webkit-text-fill-color:white;
+  }
   .form-card > p{color:rgba(255,255,255,0.55); font-size:14px; margin-bottom:30px; position:relative;}
 
   .field{margin-bottom:20px; position:relative;}
@@ -1367,7 +1394,7 @@
   // form submit handling — sends data to Google Sheet via Apps Script,
   // using a hidden-iframe form POST (far more reliable across browsers
   // than fetch with mode:'no-cors' for Google Apps Script endpoints)
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycby485fV9fD4McsJpw2QYFnibMrtcCaZd6OHfYTeNCSSsTyjh_DV1QrDdq2OjKgAS414pw/exec';
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyYW4K3I-iqxXcDBX1fSX5hWM27T9IgX7Z4RQYr1ERMPNmzMIxT2TpsCSpJJMubZNbnsQ/exec';
 
   const form = document.getElementById('leadForm');
   const hiddenIframe = document.getElementById('hiddenIframe');
